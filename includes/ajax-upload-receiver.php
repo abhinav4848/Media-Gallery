@@ -29,7 +29,7 @@ if (file_exists($path.($_FILES["file"]["name"]))) {
     // create the final name the file will have on the server hard disk
 
     // https://stackoverflow.com/a/12665861/2365231
-    $filename_final_to_save =  urlencode(htmlentities(strtr(time().'-'.$_FILES['file']['name'], $substitute_params)));
+    $filename_final_to_save =  strtr(time().'-'.$_FILES['file']['name'], $substitute_params);
 
     // move file from PHP temp location to custom temp location using this new name
     move_uploaded_file($_FILES['file']['tmp_name'], $path.$filename_final_to_save);

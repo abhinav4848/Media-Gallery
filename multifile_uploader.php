@@ -15,9 +15,12 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='submit') {
 
     $total = count($_FILES['upload']['name']);
     
+    $substitute_params = array('#' => '_', '~' => '_', '&' => '_');
+    
     // Loop through each file
     for ($i=0 ; $i < $total ; $i++) {
-        $filename_final_to_save = str_replace('#', '_', urlencode(htmlentities(time().'-'.$_FILES['upload']['name'][$i])));
+        // create the final name the file will have on the server hard disk
+        $filename_final_to_save =  strtr(time().'-'.$_FILES['upload']['name'][$i], $substitute_params);
 
         // array pushing
         $_SESSION['files'][] = $filename_final_to_save;
@@ -63,7 +66,7 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='submit') {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="includes/libraries/bootstrap.min.css">
 
-    <title>Create a tag/star</title>
+    <title>Upload Multiple Files</title>
 
     <style type="text/css">
     </style>

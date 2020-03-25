@@ -53,7 +53,7 @@ if (array_key_exists("files", $_SESSION) and isset($_SESSION["files"])) {
                     }
                     
                     echo '<div class="card-body">
-                    <h5 class="card-title">$filename_original_name</h5>
+                    <h5 class="card-title">'.$filename_original_name.'</h5>
                     <p class="card-text">Original Name: '.$filename_final_to_save.' Extension: '.$filename_ext.', original_filename_without_ext: '.$original_filename_without_ext.'</p>
                     <a href="#" class="btn btn-primary">Save</a>
                     </div>
