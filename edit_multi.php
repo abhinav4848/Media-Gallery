@@ -28,6 +28,8 @@ if (array_key_exists("files", $_SESSION) and isset($_SESSION["files"])) {
 </head>
 
 <body>
+    <?php include('includes/navbar.php');?>
+
     <div class="container-fluid">
         <div class="grid">
             <?php
@@ -40,21 +42,22 @@ if (array_key_exists("files", $_SESSION) and isset($_SESSION["files"])) {
                 
                 if (array_key_exists($i, $_SESSION['error'])) {
                     $error = $_SESSION['error'][$i];
-                    echo '<div class="grid-item card" style="width: 18rem;">
+                    echo '<div class="grid-item card mb-1" style="width: 18rem;">
                     <div class="card-body">
                     <p class="card-text">';
                     echo $error;
                     echo '</p></div></div>';
                 } else {
-                    echo '<div class="grid-item card" style="width: 18rem;">';
+                    echo '<div class="grid-item card mb-1" style="width: 18rem;">';
 
                     if ($filename_ext == 'jpg' or $filename_ext == 'jpeg' or $filename_ext == 'png' or $filename_ext == 'gif') {
                         echo '<img src="storage/tmpfiles/'.$filename_final_to_save.'" class="card-img-top">';
                     }
                     
                     echo '<div class="card-body">
-                    <h5 class="card-title">'.$filename_original_name.'</h5>
-                    <p class="card-text">Original Name: '.$filename_final_to_save.' Extension: '.$filename_ext.', original_filename_without_ext: '.$original_filename_without_ext.'</p>
+                    <input type="hidden" data-filename="'.$filename_final_to_save.'">
+                    <h5 class="card-title"><input type="text" class="form-control" data-type="title" placeholder="Title" value="'.$filename_original_name.'"></h5>
+                    <p class="card-text"><textarea class="form-control" data-type="description" placeholder="Description"></textarea><b>Original Name</b>: '.$filename_final_to_save.' <br /><b>Extension</b>: '.$filename_ext.'<br /></p>
                     <a href="#" class="btn btn-primary">Save</a>
                     </div>
                     </div>';

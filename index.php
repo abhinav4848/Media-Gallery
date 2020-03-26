@@ -44,7 +44,7 @@ include 'includes/connect-db.php';
         <h3>Recent Uploads</h3>
         <ol>
             <?php
-            $query = "SELECT * FROM `media_entries` ORDER BY id DESC LIMIT 30";
+            $query = "SELECT * FROM `media_entries` ORDER BY id DESC LIMIT 50";
             $result = mysqli_query($link, $query);
             while ($row = mysqli_fetch_array($result)) {
                 echo '<li><a href="view.php?id='.$row['id'].'" target="_self">'.$row['title'].'&nbsp;&nbsp;';

@@ -40,8 +40,12 @@ if (array_key_exists("delete", $_POST) and array_key_exists("id", $_POST) and $_
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-        rename('storage/files/'. $row['filename_final'], $path.$row['filename_final'].'-deleted-'.time().'.'.$row['filename_ext']);
-        echo 'success'; // ajax request
+
+        $query_delete_tags = "DELETE FROM `media_tag` WHERE `media_id` = ".mysqli_real_escape_string($link, $_POST['id']);
+        if (mysqli_query($link, $query_delete_tags)) {
+            rename('storage/files/'. $row['filename_final'], $path.$row['filename_final'].'-deleted-'.time().'.'.$row['filename_ext']);
+            echo 'success'; // ajax request
+        }
     } else {
         echo '<div id="tablediv">';
         echo "failed to delete the entry.";

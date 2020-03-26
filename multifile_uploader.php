@@ -73,11 +73,14 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='submit') {
 </head>
 
 <body>
+    <?php include('includes/navbar.php');?>
+    <div class="container">
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="upload[]" multiple>
+            <button type="submit" value="submit" name="submit">Submit</button>
+        </form>
+    </div>
 
-    <form method="post" enctype="multipart/form-data">
-        <input type="file" name="upload[]" multiple>
-        <button type="submit" value="submit" name="submit">Submit</button>
-    </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="includes/libraries/jquery-3.2.1.min.js">
