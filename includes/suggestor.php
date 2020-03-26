@@ -28,7 +28,7 @@ if (array_key_exists("media_id", $_POST) and is_numeric($_POST['media_id'])) {
                     $result_entry = mysqli_query($link, $query_entry);
                     $row_entry = mysqli_fetch_array($result_entry);
 
-                    echo '<a href="../view.php?id='.$row_similar_posts['media_id'].'">'.$row_entry['title'].'</a> <span class="badge badge-primary">'.$row_entry['filename_ext'].'</span></br>';
+                    echo '<a href="./view.php?id='.$row_similar_posts['media_id'].'">'.$row_entry['title'].'</a> <span class="badge badge-primary">'.$row_entry['filename_ext'].'</span></br>';
                 }
             }
         }
