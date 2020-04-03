@@ -11,15 +11,29 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='add_entry') {
     if ($_POST['title']=='') {
         $error.='Enter a title. ';
     }
+
+    $hash = sha1_file('storage/tmpfiles/'.$_POST['filename_final']);
+    
+    $query_check_hash = "SELECT `id` FROM `media_entries` WHERE hash='".mysqli_real_escape_string($link, $hash)."' LIMIT 1";
+    $result_check_hash = mysqli_query($link, $query_check_hash);
+    if (mysqli_num_rows($result_check_hash)!=0) {
+        $row_check_hash=mysqli_fetch_array($result_check_hash);
+        $error.='File exists: <a href="view.php?id='.$row_check_hash['id'].'" target="_blank">here</a>';
+
+        //delete that uploaded file
+        unlink('storage/tmpfiles/'.$_POST['filename_final']);
+    }
+
     
     if ($error=='') {
-        $query = "INSERT INTO `media_entries` (`title`, `description`, `filename_final`, `filename_original_name`, `filename_ext`, `upload_time`)
+        $query = "INSERT INTO `media_entries` (`title`, `description`, `filename_final`, `filename_original_name`, `filename_ext`, `hash`, `upload_time`)
 			VALUES (
 			'".mysqli_real_escape_string($link, $_POST['title'])."',
 			'".mysqli_real_escape_string($link, $_POST['description'])."',
             '".mysqli_real_escape_string($link, $_POST['filename_final'])."',
 			'".mysqli_real_escape_string($link, $_POST['filename_original_name'])."',
 			'".mysqli_real_escape_string($link, $_POST['filename_ext'])."',
+            '".mysqli_real_escape_string($link, $hash)."',
 			'".date('Y-m-d H:i:s')."');";
     
         if (mysqli_query($link, $query)) {
