@@ -32,7 +32,7 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='add_entry') {
 			'".mysqli_real_escape_string($link, $_POST['description'])."',
             '".mysqli_real_escape_string($link, $_POST['filename_final'])."',
 			'".mysqli_real_escape_string($link, $_POST['filename_original_name'])."',
-			'".mysqli_real_escape_string($link, $_POST['filename_ext'])."',
+			'".mysqli_real_escape_string($link, strtolower($_POST['filename_ext']))."',
             '".mysqli_real_escape_string($link, $hash)."',
 			'".date('Y-m-d H:i:s')."');";
     
