@@ -2,6 +2,7 @@
 session_start();
 $error="";
 include('includes/connect-db.php');
+include('includes/compareImages.php');
 
 if (array_key_exists("submit", $_POST) and $_POST["submit"]==='add_entry') {
     if ($_POST['filename_final']=='') {
@@ -26,7 +27,15 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='add_entry') {
 
     
     if ($error=='') {
-        $query = "INSERT INTO `media_entries` (`title`, `description`, `filename_final`, `filename_original_name`, `filename_ext`, `hash`, `upload_time`)
+        if (strtolower($_POST['filename_ext'])=='jpg' or strtolower($_POST['filename_ext']=='jpeg')) {
+            // find similar_hash
+            $compareMachine = new compareImages('storage/tmpfiles/'.$_POST['filename_final']);
+            $similar_hash = $compareMachine->getHasString();
+        } else {
+            $similar_hash = '0';
+        }
+        
+        $query = "INSERT INTO `media_entries` (`title`, `description`, `filename_final`, `filename_original_name`, `filename_ext`, `hash`, `similar_hash`, `upload_time`)
 			VALUES (
 			'".mysqli_real_escape_string($link, $_POST['title'])."',
 			'".mysqli_real_escape_string($link, $_POST['description'])."',
@@ -34,6 +43,7 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='add_entry') {
 			'".mysqli_real_escape_string($link, $_POST['filename_original_name'])."',
 			'".mysqli_real_escape_string($link, strtolower($_POST['filename_ext']))."',
             '".mysqli_real_escape_string($link, $hash)."',
+            '".mysqli_real_escape_string($link, $similar_hash)."',
 			'".date('Y-m-d H:i:s')."');";
     
         if (mysqli_query($link, $query)) {

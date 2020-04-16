@@ -27,6 +27,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="multifile_uploader.php">Upload Multi</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="similar.php">Similar Images</a>
+            </li>
         </ul>
     </div>
 </nav>

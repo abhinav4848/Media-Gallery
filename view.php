@@ -107,6 +107,7 @@ if ($row['id']=='') {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Similar: </h5>
+                        <a href="similar.php?fileid=<?=$row['id']?>">Find Similar</a>
                         <p class="card-text" id="similar"></p>
                     </div>
                 </div>

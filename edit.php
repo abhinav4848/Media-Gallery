@@ -59,7 +59,11 @@ if (array_key_exists("id", $_GET) and $_GET['id']!='' and is_numeric($_GET['id']
     // check if viewing
     $query = "SELECT * FROM `media_entries` WHERE id=".mysqli_real_escape_string($link, $_GET['id'])." LIMIT 1";
     $result = mysqli_query($link, $query);
-    $row = mysqli_fetch_array($result);
+    if (mysqli_num_rows($result)!=0) {
+        $row = mysqli_fetch_array($result);
+    } else {
+        header("Location: index.php");
+    }
 } else {
     header("Location: index.php");
 }
