@@ -10,22 +10,26 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.php">Home</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="upload.php">Upload</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="uploadDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Upload
+                </a>
+                <div class="dropdown-menu" aria-labelledby="uploadDropdown">
+                    <a class="dropdown-item" href="upload.php">Single</a>
+                    <a class="dropdown-item" href="multifile_uploader.php">Multiple</a>
+                </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    Choose Type
+                    View Type
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="view-all.php?type=vids">Vids</a>
                     <a class="dropdown-item" href="view-all.php?type=pics">Pics</a>
                     <a class="dropdown-item" href="view-all.php?type=gifs">Gifs</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="multifile_uploader.php">Upload Multi</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="similar.php">Similar Images</a>

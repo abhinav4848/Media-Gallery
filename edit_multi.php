@@ -29,7 +29,7 @@ if (array_key_exists("request_type", $_POST) and $_POST["request_type"]=='add_en
         //delete that uploaded file
         unlink('storage/tmpfiles/'.$_POST['filename_final']);
     } else {
-        if (strtolower($_POST['filename_ext'])=='jpg' or strtolower($_POST['filename_ext']=='jpeg')) {
+        if (strtolower($_POST['filename_ext'])=='jpg' or strtolower($_POST['filename_ext'])=='jpeg' or strtolower($_POST['filename_ext']=='png')) {
             // find similar_hash
             $compareMachine = new compareImages('storage/tmpfiles/'.$_POST['filename_final']);
             $similar_hash = $compareMachine->getHasString();

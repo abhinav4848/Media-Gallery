@@ -27,7 +27,7 @@ if (array_key_exists("submit", $_POST) and $_POST["submit"]==='add_entry') {
 
     
     if ($error=='') {
-        if (strtolower($_POST['filename_ext'])=='jpg' or strtolower($_POST['filename_ext']=='jpeg')) {
+        if (strtolower($_POST['filename_ext'])=='jpg' or strtolower($_POST['filename_ext']=='jpeg') or strtolower($_POST['filename_ext']=='png')) {
             // find similar_hash
             $compareMachine = new compareImages('storage/tmpfiles/'.$_POST['filename_final']);
             $similar_hash = $compareMachine->getHasString();
